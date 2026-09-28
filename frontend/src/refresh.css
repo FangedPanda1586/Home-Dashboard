@@ -1,0 +1,150 @@
+/* XUAN 3.1 — Obsidian. Opaque surfaces avoid stacked GPU blur layers. */
+:root { --atlas-pink:#c4b5fd; --atlas-pink-strong:#a78bfa; --atlas-purple:#a78bfa; --atlas-panel:#13141d; --atlas-panel-soft:#171822; --atlas-line:#2b2c3b; --atlas-text-muted:#a3a4b8; font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; color:#eeedf5; }
+html,body { background:#0c0d13!important; }
+body::before,body::after,.atlas-app-shell::before,.atlas-main::before,.atlas-main::after,.atlas-login-ambient { display:none!important; }
+*,*::before,*::after { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+button,a,input,select { touch-action:manipulation; }
+button,a { transition:background-color .16s,border-color .16s,color .16s!important; }
+button:focus-visible,a:focus-visible,[tabindex="0"]:focus-visible,input:focus-visible,select:focus-visible { outline:2px solid #c4b5fd!important; outline-offset:4px; }
+.xuan-skip { position:fixed; top:8px; left:16px; transform:translateY(-180%); z-index:1000; padding:12px 20px; background:#c4b5fd; color:#171322; border-radius:8px; }
+.xuan-skip:focus { transform:none; }
+.atlas-app-shell { display:grid; grid-template-columns:232px minmax(0,1fr); width:min(1800px,100%); min-height:100dvh; margin:0 auto; border:0; border-radius:0; background:#0c0d13!important; box-shadow:none; overflow:visible; }
+.atlas-sidebar { position:sticky; top:0; height:100dvh; padding:30px 18px 18px; background:#101119!important; border-right:1px solid #252632; border-radius:0; overflow-y:auto; }
+.atlas-brand { margin:0 4px 34px; gap:12px; }
+.atlas-brand-copy strong { font-size:24px; letter-spacing:.16em; }
+.atlas-brand-copy > span { font-size:12px; color:#9293a7; letter-spacing:.1em; }
+.atlas-logo-mark { width:42px; height:42px; box-shadow:none!important; filter:none!important; }
+.xuan-seal-mark { filter:none!important; }
+.atlas-nav { gap:5px; }
+.atlas-nav button { min-height:46px; padding:12px 14px; font-size:14px; color:#a7a8bc; border-radius:9px; border:1px solid transparent; }
+.atlas-nav button:hover { background:#1a1b27; color:#fff; }
+.atlas-nav .atlas-nav__active { color:#ddd4ff; background:#252037; border-color:#3c3154; box-shadow:none; }
+.atlas-nav .atlas-nav__active::before { display:none; }
+.atlas-side-health { padding:16px; background:#171822; border:1px solid #2b2c3b; border-radius:12px; box-shadow:none; }
+.atlas-server-orb { display:none; }
+.atlas-side-health strong { font-size:20px; }
+.atlas-side-health p,.atlas-side-health__label { font-size:12px; color:#abaec0; }
+.atlas-profile-card { min-height:66px; margin-top:18px; background:transparent; border:0; border-top:1px solid #2b2c3b; border-radius:0; }
+.atlas-profile-copy strong { font-size:14px; }
+.atlas-profile-copy > span { font-size:12px; color:#9698ab; }
+.atlas-main { min-width:0; padding:28px clamp(20px,3vw,48px) 48px; background:#0c0d13!important; }
+.atlas-topbar { min-height:64px; margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid #252632; gap:16px; }
+.atlas-topbar h1 { font-size:21px; letter-spacing:-.025em; font-weight:650; }
+.atlas-topbar p { font-size:14px; color:#9b9caf; line-height:1.5; }
+.atlas-clock { font-size:14px; color:#d3d2e0; font-variant-numeric:tabular-nums; }
+.atlas-clock span { font-size:13px; color:#9293a7; }
+.atlas-icon-button { width:44px; height:44px; border-radius:10px; background:#181923; border:1px solid #2b2c3b; }
+.atlas-dashboard-welcome { min-height:174px; padding:28px 30px; margin-bottom:22px; border:1px solid #363044; border-radius:16px; background:linear-gradient(90deg,#191523 0%,#191523ee 40%,#19152344 100%),url('/xuan-dashboard-hero-clean.webp') right center/cover no-repeat!important; box-shadow:none; }
+.atlas-dashboard-welcome::before,.atlas-dashboard-welcome::after { display:none!important; }
+.atlas-dashboard-welcome h2 { margin:12px 0 8px; font-size:clamp(26px,2.8vw,40px); font-weight:600; letter-spacing:-.04em; line-height:1.15; }
+.atlas-dashboard-welcome h2 em { color:#d3c3ff; font-style:normal; }
+.atlas-dashboard-welcome p { font-size:14px; color:#beb7cd; }
+.atlas-health-line { color:#b9e6ce; font-size:12px; letter-spacing:.025em; }
+.atlas-widget-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; }
+.atlas-dashboard-widget { min-width:0; min-height:172px; padding:20px; border:1px solid #2a2b39; border-radius:14px; background:#151620!important; box-shadow:none!important; transition:border-color .16s!important; }
+.atlas-dashboard-widget::before,.atlas-dashboard-widget::after { display:none; }
+.atlas-dashboard-widget.is-clickable:hover { transform:none; background:#1b1c29!important; border-color:#605077; }
+.atlas-dashboard-widget.size-small { grid-column:span 1; }
+.atlas-dashboard-widget.size-medium { grid-column:span 2; }
+.atlas-dashboard-widget.size-wide { grid-column:1/-1; }
+.atlas-widget-head { gap:10px; flex-wrap:wrap; }
+.atlas-widget-head h3 { font-size:14px; color:#e3e1ef; }
+.atlas-widget-head > div > span { font-size:12px; color:#9c9aaf; }
+.atlas-widget-icon { width:34px; height:34px; border-radius:9px; box-shadow:none; }
+.atlas-widget-value { font-size:clamp(28px,2.6vw,38px); font-weight:550; letter-spacing:-.045em; font-variant-numeric:tabular-nums; }
+.atlas-widget-body > p,.atlas-widget-body > small,.atlas-mini-status-row { font-size:12px; color:#aaa8bd; line-height:1.5; }
+.atlas-widget-edit-controls { flex-wrap:wrap; margin:8px 0 0; }
+.atlas-widget-edit-controls button { width:36px; height:36px; }
+.atlas-progress { box-shadow:none!important; }
+.xuan-dashboard-main-grid { grid-template-columns:minmax(0,1.65fr) minmax(280px,1fr); gap:18px; margin-top:22px; }
+.atlas-panel,.xuan-apps-panel,.xuan-health-panel { min-width:0; background:#13141d!important; border:1px solid #2b2c3b; border-radius:14px; box-shadow:none!important; padding:24px; }
+.xuan-apps-panel::before,.xuan-health-panel::before { display:none; }
+.xuan-section-heading { gap:12px; flex-wrap:wrap; }
+.xuan-section-heading h3 { font-size:20px; letter-spacing:-.02em; }
+.xuan-section-heading span { font-size:12px; color:#bca8f5; letter-spacing:.09em; }
+.xuan-section-heading p { font-size:14px; color:#9596aa; }
+.xuan-section-heading button { min-height:44px; font-size:14px; color:#d0c0ff; }
+.xuan-app-launch-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:22px; }
+.xuan-app-launch-card { min-width:0; min-height:144px; padding:20px 14px; border:1px solid #303140; background:#191a25; border-radius:12px; box-shadow:none!important; transition:border-color .16s!important; }
+.xuan-app-launch-card:hover { transform:none; background:#202130; border-color:#716089; }
+.xuan-app-launch-card strong { max-width:100%; font-size:14px; overflow-wrap:anywhere; }
+.xuan-app-launch-card > span:last-of-type { font-size:12px; }
+.xuan-app-launch-card > button { width:36px; height:36px; }
+.xuan-app-launch-icon { filter:none; box-shadow:none; }
+.xuan-health-emblem { margin:0 0 16px; }
+.xuan-health-emblem > span { width:48px; height:48px; border-radius:12px; box-shadow:none; background:#192b26; color:#9be2bc; }
+.xuan-health-copy h3 { font-size:20px; line-height:1.3; }
+.xuan-health-copy p { font-size:14px; color:#9698ac; }
+.xuan-health-copy > span { font-size:12px; }
+.xuan-health-list button { min-height:48px; font-size:14px; border-bottom:1px solid #282937; }
+.xuan-health-list strong { font-size:12px; }
+.atlas-primary-button,.atlas-ghost-button,.atlas-filter-chip { min-height:42px; font-size:14px; border-radius:9px; }
+.atlas-primary-button { color:#f4efff; background:#7050aa; border:1px solid #9572cc; box-shadow:none; }
+.atlas-search input,.atlas-field input,.atlas-field select { font-size:16px; min-height:46px; }
+.atlas-field > span { font-size:14px; color:#b3b1c4; }
+.atlas-page h2 { line-height:1.3; }
+.atlas-mobile-nav { display:none; }
+.atlas-login-screen { min-height:100dvh; padding:32px 20px; background:linear-gradient(90deg,#090a12bb,#090a1244),url('/xuan-login-bg-desktop.webp') center/cover no-repeat!important; }
+.atlas-login-screen::before,.atlas-login-screen::after { display:none!important; }
+.atlas-login-shell { width:min(460px,100%); }
+.atlas-login-brand { margin-bottom:26px; }
+.atlas-login-card { padding:32px; border:1px solid #3b354b; border-radius:18px; background:#14131eee!important; box-shadow:0 16px 40px #0005!important; }
+.atlas-login-card::after { display:none; }
+.atlas-login-card__heading h1 { font-size:30px; letter-spacing:-.035em; }
+.atlas-login-card__heading > div > span { font-size:14px; color:#ada5bf; }
+.atlas-login-form label > span:first-child { font-size:14px; color:#d0cadc; }
+.xuan-login-field { min-height:50px; border-radius:10px; background:#0e0f18; }
+.xuan-login-field input { min-height:50px; font-size:16px!important; }
+.xuan-password-toggle { min-width:44px; min-height:44px; }
+.atlas-login-submit { min-height:50px; font-size:16px; background:#7852b9!important; box-shadow:none!important; border-radius:10px; }
+.atlas-login-options { flex-wrap:wrap; gap:12px; }
+.atlas-login-remember span,.atlas-login-secure,.atlas-login-foot { font-size:12px!important; color:#b8afc9; }
+.atlas-login-remember input { width:18px; height:18px; }
+.atlas-mobile-more { background:#191a26!important; border:1px solid #444054; }
+.atlas-library-item strong { font-size:14px; }
+.atlas-library-item p { font-size:12px; }
+.atlas-library-item button { min-height:40px; font-size:12px; }
+@media(min-width:901px) and (max-width:1300px) { .atlas-widget-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } .xuan-dashboard-main-grid { grid-template-columns:1fr; } }
+@media(max-width:1100px) and (min-width:901px) { .atlas-app-shell { grid-template-columns:200px minmax(0,1fr); } .atlas-sidebar { padding:24px 12px; } }
+@media(max-width:900px) {
+ .atlas-app-shell { display:block; width:100%; min-height:100dvh; margin:0; }
+ .atlas-sidebar { display:none!important; }
+ .atlas-main { padding:20px 18px calc(100px + env(safe-area-inset-bottom)); }
+ .atlas-topbar { margin-bottom:20px; padding-bottom:18px; }
+ .atlas-topbar p { font-size:13px; }
+ .atlas-clock { display:none; }
+ .atlas-dashboard-welcome { min-height:156px; padding:24px; }
+ .atlas-widget-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+ .atlas-dashboard-widget { padding:18px; }
+ .atlas-dashboard-widget.size-medium,.atlas-dashboard-widget.size-wide { grid-column:1/-1; }
+ .xuan-dashboard-main-grid { grid-template-columns:1fr; }
+ .atlas-mobile-nav { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); position:fixed; bottom:0; left:0; right:0; z-index:70; padding:8px 8px calc(8px + env(safe-area-inset-bottom)); border:0; border-top:1px solid #363343; border-radius:0; background:#12131d!important; box-shadow:none; }
+ .atlas-mobile-nav button { min-height:52px; font-size:12px; color:#9d9daf; gap:5px; border-radius:9px; }
+ .atlas-mobile-nav button.active { color:#d3c0ff; background:#29213b; }
+ .atlas-mobile-nav button span { font-size:12px; }
+ .atlas-mobile-more { bottom:calc(82px + env(safe-area-inset-bottom)); left:12px; right:12px; max-height:65dvh; overflow-y:auto; border-radius:14px; }
+ .atlas-mobile-more button { min-height:48px; font-size:14px; }
+ .atlas-widget-edit-controls button { width:44px; height:44px; }
+ .atlas-login-screen { background:linear-gradient(#0a0b1355,#0a0b1399),url('/xuan-login-bg-mobile.webp') center/cover no-repeat!important; }
+}
+@media(max-width:480px) {
+ .atlas-main { padding-inline:14px; }
+ .atlas-topbar h1 { font-size:20px; }
+ .atlas-dashboard-welcome { padding:20px; background-position:65% center!important; }
+ .atlas-dashboard-welcome h2 { font-size:28px; }
+ .atlas-dashboard-actions { align-self:flex-start; }
+ .atlas-dashboard-widget { padding:15px; min-height:166px; }
+ .atlas-widget-head { gap:8px; }
+ .atlas-widget-value { font-size:30px; }
+ .xuan-app-launch-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .atlas-panel,.xuan-apps-panel,.xuan-health-panel { padding:18px; }
+ .atlas-login-card { padding:24px 20px; }
+ .atlas-library-grid,.atlas-field-grid { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+/* Override legacy high-specificity glass and narrow-screen rules. */
+.atlas-app-shell,.atlas-sidebar,.atlas-dashboard-widget,.atlas-login-card,.xuan-apps-panel,.xuan-health-panel,.atlas-mobile-nav { backdrop-filter:none!important; -webkit-backdrop-filter:none!important; }
+@media(max-width:900px) {
+ .atlas-widget-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+ .atlas-main { padding:20px 14px calc(100px + env(safe-area-inset-bottom))!important; }
+}
